@@ -28,6 +28,11 @@ public class ProjectsService {
             throw new NoSuchElementException("Project not found for id:: " + projectId);
         });
     }
+//    update projects retrived by id
+    public Projects updateProjects(Long projectId, Projects projects){
+        getProjectsById(projectId);
+        return saveProject(projects);
+    }
 
 //    Delete Method using projectId
     public void deleteProject(Long projectId){

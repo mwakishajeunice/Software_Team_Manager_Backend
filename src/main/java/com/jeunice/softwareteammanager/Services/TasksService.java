@@ -2,6 +2,7 @@ package com.jeunice.softwareteammanager.Services;
 
 import com.jeunice.softwareteammanager.Dao.TasksRepository;
 import com.jeunice.softwareteammanager.Models.Tasks;
+import com.jeunice.softwareteammanager.Models.Tasks;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,8 +30,16 @@ public class TasksService {
         });
     }
 
-//    Delete task using taskId
-    public void deleteTask(Long taskId){
+    //Update Tasks by Id
+    public Tasks updateTasks(Long taskId, Tasks tasks){
+        getTaskById(taskId);
+        return saveTask(tasks);
+    }
 
+    //  Delete task using taskId
+    public void deleteTask(Long tasksId){
+    tasksRepository.findById(tasksId).ifPresentOrElse(tasksRepository::delete, () -> {
+        throw new NoSuchElementException("not found");
+    });
     }
 }

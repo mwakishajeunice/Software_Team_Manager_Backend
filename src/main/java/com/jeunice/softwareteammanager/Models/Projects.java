@@ -5,8 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
@@ -18,11 +17,21 @@ import java.util.Date;
 public class Projects {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long projectId;
     @NotBlank(message = "Project Title is Mandatory")
     private String projectTitle;
-    @NotBlank(message = "Due Date is Mandatory")
-    private Date dueDate;
+//    @NotBlank(message = "Start Date is Mandatory")
+    private Date startDate;
+//    @NotBlank(message = "End Date is Mandatory")
+    private Date endDate;
     @NotBlank(message = "Project Status is Mandatory")
     private  String projectStatus;
+    @NotBlank(message = "Description is Mandatory")
+    private String description;
+    @NotBlank(message = "Languages is Mandatory")
+    private String languages;
+
+    @ManyToOne
+    private Developers developers;
 }

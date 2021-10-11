@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -24,7 +25,14 @@ public class Tasks {
     private String taskTitle;
     @NotBlank(message = "Task Status is Mandatory")
     private String taskStatus;
-    @NotBlank(message = "Due Date is Mandatory")
-    private Date dueDate;
+    @NotBlank(message = "Start Date is Mandatory")
+    private Date startDate;
+    @NotBlank(message = "End Date is Mandatory")
+    private Date endDate;
+    @ManyToOne
+    private Projects projects;
+
+    @ManyToOne
+    private Developers developers;
 
 }

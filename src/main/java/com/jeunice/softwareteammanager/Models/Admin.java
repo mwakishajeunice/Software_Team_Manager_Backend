@@ -4,8 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -14,14 +18,14 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Developers {
+public class Admin {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long developerId;
-    @NotBlank(message = "FirstName is Mandatory")
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long adminId;
+    @NotBlank(message = "First Name is Mandatory")
     private String firstName;
-    @NotBlank(message = "LastName is Mandatory")
+    @NotBlank(message = "Last Name is Mandatory")
     private String lastName;
     @NotBlank(message = "Email is Mandatory")
     private String email;
@@ -29,11 +33,6 @@ public class Developers {
     private Long phoneNo;
     @NotBlank(message = "Password is Mandatory")
     private String password;
-    @NotNull(message = "Experience is Mandatory")
-    private Integer experience;
 
-    @ManyToOne( targetEntity=Roles.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "roleId", referencedColumnName = "roleId")
-    private Roles roles;
 
 }
